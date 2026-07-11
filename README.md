@@ -1,11 +1,12 @@
 # OpenClaw 配置指南
 
-基于 OpenClaw 真实部署经验的配置指南。覆盖从零开始的完整配置流程。
+基于 OpenClaw 真实部署经验的配置指南。它是受控参考，不是可直接覆盖现有配置的模板库；先阅读[适用范围与安全边界](./docs/00-适用范围与安全边界.md)。
 
 ## 目录
 
 | 文件 | 内容 | 适合谁 |
 |:-----|:-----|:-------|
+| [00-适用范围与安全边界.md](./docs/00-适用范围与安全边界.md) | 版本、风险、验证与回滚原则 | 所有人 |
 | [01-快速启动.md](./docs/01-快速启动.md) | 从零到能聊天 | 刚装好 OpenClaw 的人 |
 | [02-模型配置.md](./docs/02-模型配置.md) | DeepSeek / OpenRouter / MiMo / 小艺 | 想省钱又想用好模型的人 |
 | [03-渠道配置.md](./docs/03-渠道配置.md) | 微信 / QQ / 小艺渠道 | 想让 AI 接入聊天工具的人 |
@@ -13,6 +14,7 @@
 | [05-代理网络实战.md](./docs/05-代理网络实战.md) | Mihomo 配置 / env-proxy / Header 编码 / 看门狗 | 需要深入代理配置的人 |
 | [06-常见问题排错.md](./docs/06-常见问题排错.md) | 微信重复回复 / 插件去重 / send_file_to_user bug / Compaction / QQ Bot / TTS | 遇到问题的人 |
 | [07-多渠道配置实战.md](./docs/07-多渠道配置实战.md) | 微信 + QQ Bot 双渠道 / 图片服务 / TTS 代理 | 需要多渠道部署的人 |
+| [10-兼容性矩阵.md](./docs/10-兼容性矩阵.md) | 当前验证状态与已知边界 | 配置或升级前 |
 
 ## 30 秒快速启动
 
@@ -23,15 +25,17 @@ npm install -g openclaw
 # 2. 初始化
 openclaw init
 
-# 3. 配置 API Key（以 DeepSeek 为例）
-# 编辑 ~/.openclaw/openclaw.yaml
-# 或通过 openclaw config set 设置
+# 3. 先确认当前实例使用的配置结构与 Gateway 状态
+openclaw status
 
-# 4. 启动
-openclaw gateway start
+# 4. 只添加所需的最小 provider 配置；不要覆盖整份配置
+# 字段以当前官方 schema 为准，真实 API Key 不进入仓库或截图
 
-# 5. 验证
-openclaw channel list
+# 5. Gateway 未运行时才按官方方式启动；已运行时不要重复启动
+# 配置变更后先做最小验证，再决定是否需要重载/重启
+
+# 6. 验证
+openclaw status
 ```
 
 ## 核心理念
