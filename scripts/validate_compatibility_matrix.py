@@ -4,7 +4,14 @@ from __future__ import annotations
 import re,sys
 from pathlib import Path
 p=Path(__file__).resolve().parents[1]/"docs"/"10-兼容性矩阵.md"
-rows=[x for x in p.read_text(encoding="utf-8").splitlines() if x.startswith("|")][2:]
+lines=p.read_text(encoding="utf-8").splitlines()
+start=next((i for i,x in enumerate(lines) if x.startswith("| 模块 |")), None)
+if start is None:
+    print("compatibility table not found"); sys.exit(1)
+rows=[]
+for x in lines[start+2:]:
+    if not x.startswith("|"): break
+    rows.append(x)
 errors=[]
 for row in rows:
     cells=[x.strip() for x in row.strip("|").split("|")]
