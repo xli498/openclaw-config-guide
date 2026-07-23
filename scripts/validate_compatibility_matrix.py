@@ -1,24 +1,37 @@
 #!/usr/bin/env python3
 """Guard the evidence contract of docs/10-兼容性矩阵.md."""
 from __future__ import annotations
-import re,sys
+import re
+import sys
 from pathlib import Path
-p=Path(__file__).resolve().parents[1]/"docs"/"10-兼容性矩阵.md"
-lines=p.read_text(encoding="utf-8").splitlines()
-start=next((i for i,x in enumerate(lines) if x.startswith("| 模块 |")), None)
+
+path = Path(__file__).resolve().parents[1] / "docs" / "10-兼容性矩阵.md"
+lines = path.read_text(encoding="utf-8").splitlines()
+start = next((i for i, line in enumerate(lines) if line.startswith("| 模块 |")), None)
 if start is None:
-    print("compatibility table not found"); sys.exit(1)
-rows=[]
-for x in lines[start+2:]:
-    if not x.startswith("|"): break
-    rows.append(x)
-errors=[]
+    print("compatibility table not found")
+    sys.exit(1)
+
+rows = []
+for line in lines[start + 2:]:
+    if not line.startswith("|"):
+        break
+    rows.append(line)
+
+errors = []
 for row in rows:
-    cells=[x.strip() for x in row.strip("|").split("|")]
-    if len(cells)<7: errors.append(f"column count: {row}"); continue
-    status,date,method,evidence=cells[4:8]
-    if status=="已验证":
-        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}",date): errors.append(f"verified row needs ISO date: {cells[0]}")
-        if method in ("待补充","—") or evidence in ("待补充","—"): errors.append(f"verified row needs method/evidence: {cells[0]}")
-if errors: print(*errors,sep="\n");sys.exit(1)
+    cells = [cell.strip() for cell in row.strip("|").split("|")]
+    if len(cells) != 7:
+        errors.append(f"unexpected compatibility row: {row}")
+        continue
+    module, _environment, date, method, status, evidence, _notes = cells
+    if status == "已验证":
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
+            errors.append(f"verified row needs ISO date: {module}")
+        if method in ("待补充", "—") or evidence in ("待补充", "—"):
+            errors.append(f"verified row needs method and evidence: {module}")
+
+if errors:
+    print(*errors, sep="\n")
+    sys.exit(1)
 print("compatibility matrix evidence contract passed")
