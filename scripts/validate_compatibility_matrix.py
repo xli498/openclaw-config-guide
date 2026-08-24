@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Guard the evidence contract of docs/10-兼容性矩阵.md."""
+"""Guard the evidence contract of docs/13-兼容性矩阵.md."""
 from __future__ import annotations
 import re
 import sys
 from pathlib import Path
 
-path = Path(__file__).resolve().parents[1] / "docs" / "10-兼容性矩阵.md"
+path = Path(__file__).resolve().parents[1] / "docs" / "13-兼容性矩阵.md"
 lines = path.read_text(encoding="utf-8").splitlines()
 start = next((i for i, line in enumerate(lines) if line.startswith("| 模块 |")), None)
 if start is None:
