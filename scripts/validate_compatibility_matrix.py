@@ -25,6 +25,10 @@ for row in rows:
         errors.append(f"unexpected compatibility row: {row}")
         continue
     module, _environment, date, method, status, evidence, _notes = cells
+    if status not in ("待验证", "已验证", "已知失效"):
+        errors.append(f"invalid status for {module}: {status}")
+    if status == "待验证" and (date != "待补充" or evidence != "—"):
+        errors.append(f"unverified row must use a pending date and no evidence: {module}")
     if status == "已验证":
         if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
             errors.append(f"verified row needs ISO date: {module}")
