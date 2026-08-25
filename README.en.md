@@ -8,8 +8,8 @@ A controlled reference for configuring OpenClaw from real deployment experience.
 - [Model Configuration](./docs/02-%E6%A8%A1%E5%9E%8B%E9%85%8D%E7%BD%AE.md)
 - [Channel Configuration](./docs/03-%E6%B8%A0%E9%81%93%E9%85%8D%E7%BD%AE.md)
 - [Proxy and Network](./docs/04-%E4%BB%A3%E7%90%86%E7%BD%91%E7%BB%9C.md)
-- [Troubleshooting](./docs/06-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%8E%92%E9%94%99.md)
-- [Compatibility Matrix](./docs/10-%E5%85%BC%E5%AE%B9%E6%80%A7%E7%9F%A9%E9%98%B5.md)
+- [Troubleshooting](./docs/09-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%8E%92%E9%94%99.md)
+- [Compatibility Matrix](./docs/13-%E5%85%BC%E5%AE%B9%E6%80%A7%E7%9F%A9%E9%98%B5.md)
 
 ## Safety principles
 
