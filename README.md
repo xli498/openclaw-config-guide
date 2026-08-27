@@ -9,8 +9,8 @@
 ## 30 秒快速启动
 
 ```bash
-npm install -g openclaw
-openclaw init
+curl -fsSL https://openclaw.ai/install.sh | bash
+openclaw setup
 openclaw status
 ```
 

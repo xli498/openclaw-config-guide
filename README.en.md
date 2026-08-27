@@ -22,8 +22,8 @@ A controlled reference for configuring OpenClaw from real deployment experience.
 ## Quick start
 
 ```bash
-npm install -g openclaw
-openclaw init
+curl -fsSL https://openclaw.ai/install.sh | bash
+openclaw setup
 openclaw status
 ```
 
