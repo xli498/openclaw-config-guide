@@ -40,7 +40,7 @@ openclaw status
 
 ### 模型与 Provider
 
-先区分当前实际使用的 `provider`、`model`、`baseUrl` 和 fallback，不把一次子代理成功当成主会话已修复。新 Provider 必须经过正式配置回读、重载/重启后的运行态检查、真实请求和新会话复验。不在仓库提交 API key、完整凭据、私有 endpoint、私有 Prompt 或用户数据。
+先区分当前实际使用的 `provider`、`model`、`baseUrl` 和 fallback，不把一次子代理成功当成主会话已修复。新 Provider 必须经过正式配置回读、`openclaw gateway restart` 后的运行态检查、真实请求和新会话复验。不在仓库提交 API key、完整凭据、私有 endpoint、私有 Prompt 或用户数据。
 
 ### 渠道与外部投递
 
